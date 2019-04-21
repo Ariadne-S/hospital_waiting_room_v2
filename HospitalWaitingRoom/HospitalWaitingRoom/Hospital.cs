@@ -70,7 +70,7 @@ namespace HospitalWaitingRoom
             foreach (var patient in _arrivals.ToList()) {
                 if (patient.ArrivedTime >= _time) {
                     _waiting.Add(patient);
-                    _history.Add(new HospitalHistoryRecord(_time, PatientAction.Admitted, patient.Id, patient.Severity));
+                    _history.Add(new HospitalHistoryRecord(_time, PatientAction.Arrived, patient.Id, patient.Severity));
                     _arrivals.Remove(patient);
                     _log.Information("Patient {PatientId} has arrived", patient.Id);
                 }
@@ -97,7 +97,9 @@ namespace HospitalWaitingRoom
             _log.Information("Trying to admit more patients");
 
             var PatiendAdmit = _waiting.ToList();
-            var sortedPatients = PatiendAdmit.OrderBy(p => p.Severity);
+            _log.Information("PatiendAdmit: {@PatiendAdmit}", PatiendAdmit);
+            var sortedPatients = PatiendAdmit.OrderByDescending(p => p.Severity);
+            _log.Information("Sorted: {@sortedPatients}", sortedPatients);
 
             foreach (var patient in sortedPatients) {
                 foreach (var bed in _beds) {

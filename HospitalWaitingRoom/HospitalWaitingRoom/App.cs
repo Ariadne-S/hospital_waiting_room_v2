@@ -16,14 +16,19 @@ namespace HospitalWaitingRoom
             while (hospital.HospitalStatus == HospitalStatus.Open) {
                 hospital.PatientsArrivals();
                 hospital.FilterPatients();
-                hospital.PatientAdmittance();
                 hospital.PatientVacate();
+                hospital.PatientAdmittance();
                                              
                 hospital.AdvanceTime();
             }
 
+            log.Information("Hospital is closed");
             // return total hospital history.
+            foreach (var record in hospital.History) {
+                record.PrintHistory();
+            }
             return hospital.History;
+
         }
     }
 }

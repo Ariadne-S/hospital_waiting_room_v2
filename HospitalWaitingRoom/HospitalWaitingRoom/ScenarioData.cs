@@ -12,7 +12,7 @@ namespace HospitalWaitingRoom
                 new Scenario() {
                     Name = "Scenario 1",
                     Arrivals = new List<Patient>() {
-                        new Patient("a", 6, 0 ),
+                        new Patient("a", 6, 0),
                         new Patient("b", 3, 0),
                         new Patient("c", 5, 0),
                         new Patient("d", 1, 0)

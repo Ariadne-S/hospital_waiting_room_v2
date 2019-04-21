@@ -32,7 +32,7 @@ namespace HospitalWaitingRoom
         public void BedsAdvanceTime(ILogger log)
         {
             _time += 1;
-            log.Information("Advancing time for beds {Time}", _time);
+            log.Debug("Advancing time for beds {Time}", _time);
     }
 
         public Patient Vacate()
