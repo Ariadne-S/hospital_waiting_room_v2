@@ -10,7 +10,7 @@ namespace HospitalWaitingRoom
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Information()
                 .Enrich.FromLogContext()
-                .WriteTo.Console()
+                //.WriteTo.Console()
                 .WriteTo.Seq("http://localhost:5341")
                 .CreateLogger();
 
@@ -30,6 +30,7 @@ namespace HospitalWaitingRoom
 
         private static void Run(ILogger logger)
         {
+            Welcome.PrintWelcome();
             App.RunScenario(logger, Scenario.Scenarios[0]);
         }
     }

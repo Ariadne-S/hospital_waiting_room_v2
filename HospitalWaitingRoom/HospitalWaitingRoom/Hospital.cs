@@ -59,8 +59,8 @@ namespace HospitalWaitingRoom
         public void AddPendingArrivals(IEnumerable<Patient> patients)
         {
             _arrivals.AddRange(patients);
-            _log.Information("Pending Arrivals moved to _arrival list");
-            _log.Information("_arrivals List: {Arrivals}", _arrivals);
+            _log.Debug("Pending Arrivals moved to _arrival list");
+            _log.Debug("_arrivals List: {Arrivals}", _arrivals);
         }
 
         public void PatientsArrivals()
