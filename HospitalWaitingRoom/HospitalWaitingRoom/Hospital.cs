@@ -68,7 +68,7 @@ namespace HospitalWaitingRoom
             _log.Information("Checking if patients have arrived");            
 
             foreach (var patient in _arrivals.ToList()) {
-                if (patient.ArrivedTime >= _time) {
+                if ( _time >= patient.ArrivedTime ) {
                     _waiting.Add(patient);
                     _history.Add(new HospitalHistoryRecord(_time, PatientAction.Arrived, patient.Id, patient.Severity));
                     _arrivals.Remove(patient);

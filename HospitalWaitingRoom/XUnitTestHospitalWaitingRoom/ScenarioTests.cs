@@ -92,5 +92,49 @@ namespace XUnitTestHospitalWaitingRoom
 
             Assert.Equal(expectations, results);
         }
+
+
+        [Fact]
+        public void Scenario3Test()
+        {
+            _log.Information("Test3 started");
+
+            var results = App.RunScenario(_log, Scenario.Scenarios[2]);
+
+            var expectations = new List<HospitalHistoryRecord>() {
+                new HospitalHistoryRecord(0, PatientAction.Arrived, "k", 7),
+                new HospitalHistoryRecord(0, PatientAction.Arrived, "l", 6),
+                new HospitalHistoryRecord(0, PatientAction.Arrived, "m", 2),
+                new HospitalHistoryRecord(0, PatientAction.Arrived, "n", 7),
+                new HospitalHistoryRecord(0, PatientAction.Arrived, "o", 6),
+                new HospitalHistoryRecord(0, PatientAction.SentHome, "m", 2),
+                new HospitalHistoryRecord(0, PatientAction.Admitted, "k", 7),
+                new HospitalHistoryRecord(0, PatientAction.Admitted, "n", 7),
+                new HospitalHistoryRecord(0, PatientAction.Admitted, "l", 6),
+                new HospitalHistoryRecord(0, PatientAction.Admitted, "o", 6),
+                new HospitalHistoryRecord(5, PatientAction.Arrived, "p", 6),
+                new HospitalHistoryRecord(5, PatientAction.Arrived, "q", 9),
+                new HospitalHistoryRecord(10, PatientAction.Vacated, "k", 7),
+                new HospitalHistoryRecord(10, PatientAction.Vacated, "n", 7),
+                new HospitalHistoryRecord(10, PatientAction.Vacated, "l", 6),
+                new HospitalHistoryRecord(10, PatientAction.Vacated, "o", 6),
+                new HospitalHistoryRecord(10, PatientAction.Admitted, "q", 9),
+                new HospitalHistoryRecord(10, PatientAction.Admitted, "p", 6),
+                new HospitalHistoryRecord(20, PatientAction.Vacated, "q", 9),
+                new HospitalHistoryRecord(20, PatientAction.Vacated, "p", 6)
+            };
+
+            foreach (var (expected, actual) in expectations.Zip(results, (a, b) => (a, b))) {
+
+                if (expected.Equals(actual)) {
+                    _log.Information("{@Expected} == {@Actual}", expected, actual);
+                } else {
+                    _log.Information("{@Expected} != {@Actual}", expected, actual);
+                }
+
+            }
+
+            Assert.Equal(expectations, results);
+        }
     }
 }
