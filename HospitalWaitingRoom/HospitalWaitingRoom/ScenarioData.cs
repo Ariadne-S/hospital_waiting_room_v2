@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HospitalWaitingRoom
 {
-    class Scenario
+    public class Scenario
     {
         public static List<Scenario> Scenarios =
             new List<Scenario>() {

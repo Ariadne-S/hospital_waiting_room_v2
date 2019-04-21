@@ -14,5 +14,6 @@
         public PatientAction Action { get; }
         public string Id { get; }
         public int Severity { get; }
+
     }
 }

@@ -17,6 +17,8 @@ namespace HospitalWaitingRoom
             try {
                 Log.Information("Starting app");
                 Run(Log.Logger);
+
+                Console.ReadLine();
                 return 0;
             } catch (Exception ex) {
                 Log.Fatal(ex, "Host terminated unexpectedly");
@@ -28,7 +30,7 @@ namespace HospitalWaitingRoom
 
         private static void Run(ILogger logger)
         {
-            throw new NotImplementedException();
+            App.RunScenario(logger, Scenario.Scenarios[0]);
         }
     }
 }
