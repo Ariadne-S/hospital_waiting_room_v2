@@ -136,5 +136,105 @@ namespace XUnitTestHospitalWaitingRoom
 
             Assert.Equal(expectations, results);
         }
+
+
+
+        [Fact]
+        public void Scenario4Test()
+        {
+            _log.Information("Test4 started");
+
+            var results = App.RunScenario(_log, Scenario.Scenarios[3]);
+
+            var expectations = new List<HospitalHistoryRecord>() {
+                new HospitalHistoryRecord(0, PatientAction.Arrived, "r", 6),
+                new HospitalHistoryRecord(0, PatientAction.Arrived, "s", 3),
+                new HospitalHistoryRecord(0, PatientAction.Arrived, "t", 7),
+                new HospitalHistoryRecord(0, PatientAction.SentHome, "s", 3),
+                new HospitalHistoryRecord(0, PatientAction.Admitted, "t", 7),
+                new HospitalHistoryRecord(0, PatientAction.Admitted, "r", 6),
+                new HospitalHistoryRecord(5, PatientAction.Arrived, "u", 7),
+                new HospitalHistoryRecord(5, PatientAction.Arrived, "v", 8),
+                new HospitalHistoryRecord(5, PatientAction.Arrived, "w", 4),
+                new HospitalHistoryRecord(5, PatientAction.Admitted, "v", 8),
+                new HospitalHistoryRecord(5, PatientAction.Admitted, "u", 7),
+                new HospitalHistoryRecord(10, PatientAction.Vacated, "t", 7),
+                new HospitalHistoryRecord(10, PatientAction.Vacated, "r", 6),
+                new HospitalHistoryRecord(10, PatientAction.Admitted, "w", 4),
+                new HospitalHistoryRecord(15, PatientAction.Vacated, "v", 8),
+                new HospitalHistoryRecord(15, PatientAction.Vacated, "u", 7),
+                new HospitalHistoryRecord(20, PatientAction.Vacated, "w", 4)
+            };
+
+            foreach (var (expected, actual) in expectations.Zip(results, (a, b) => (a, b))) {
+
+                if (expected.Equals(actual)) {
+                    _log.Information("{@Expected} == {@Actual}", expected, actual);
+                } else {
+                    _log.Information("{@Expected} != {@Actual}", expected, actual);
+                }
+
+            }
+
+            Assert.Equal(expectations, results);
+        }
+
+        [Fact]
+        public void Scenario5Test()
+        {
+            _log.Information("Test5 started");
+
+            var results = App.RunScenario(_log, Scenario.Scenarios[4]);
+
+            var expectations = new List<HospitalHistoryRecord>() {
+                new HospitalHistoryRecord(0, PatientAction.Arrived, "x", 8),
+                new HospitalHistoryRecord(0, PatientAction.Arrived, "y", 6),
+                new HospitalHistoryRecord(0, PatientAction.Arrived, "z", 4),
+                new HospitalHistoryRecord(0, PatientAction.Admitted, "x", 8),
+                new HospitalHistoryRecord(0, PatientAction.Admitted, "y", 6),
+                new HospitalHistoryRecord(0, PatientAction.Admitted, "z", 4),
+                new HospitalHistoryRecord(5, PatientAction.Arrived, "aa", 7),
+                new HospitalHistoryRecord(5, PatientAction.Arrived, "ab", 4),
+                new HospitalHistoryRecord(5, PatientAction.Arrived, "ac", 2),
+                new HospitalHistoryRecord(5, PatientAction.Arrived, "ad", 8),
+                new HospitalHistoryRecord(5, PatientAction.SentHome, "ac", 2),
+                new HospitalHistoryRecord(5, PatientAction.Admitted, "ad", 8),
+                new HospitalHistoryRecord(10, PatientAction.Vacated, "x", 8),
+                new HospitalHistoryRecord(10, PatientAction.Vacated, "y", 6),
+                new HospitalHistoryRecord(10, PatientAction.Vacated, "z", 4),
+                new HospitalHistoryRecord(10, PatientAction.Admitted, "aa", 7),
+                new HospitalHistoryRecord(10, PatientAction.Admitted, "ab", 4),
+                new HospitalHistoryRecord(12, PatientAction.Arrived, "ae", 7),
+                new HospitalHistoryRecord(12, PatientAction.Arrived, "af", 3),
+                new HospitalHistoryRecord(12, PatientAction.Arrived, "ag", 5),
+                new HospitalHistoryRecord(12, PatientAction.Arrived, "ah", 8),
+                new HospitalHistoryRecord(12, PatientAction.Arrived, "ai", 2),
+                new HospitalHistoryRecord(12, PatientAction.SentHome, "af", 3),
+                new HospitalHistoryRecord(12, PatientAction.SentHome, "ai", 2),
+                new HospitalHistoryRecord(12, PatientAction.Admitted, "ah", 8),
+                new HospitalHistoryRecord(15, PatientAction.Vacated, "ad", 8),
+                new HospitalHistoryRecord(15, PatientAction.Admitted, "ae", 7),
+                new HospitalHistoryRecord(20, PatientAction.Vacated, "aa", 7),
+                new HospitalHistoryRecord(20, PatientAction.Vacated, "ab", 4),
+                new HospitalHistoryRecord(20, PatientAction.Admitted, "ag", 5),
+                new HospitalHistoryRecord(22, PatientAction.Vacated, "ah", 8),
+                new HospitalHistoryRecord(25, PatientAction.Vacated, "ae", 7),
+                new HospitalHistoryRecord(30, PatientAction.Vacated, "ag", 5)
+            };
+
+
+            foreach (var (expected, actual) in expectations.Zip(results, (a, b) => (a, b))) {
+
+                if (expected.Equals(actual)) {
+                    _log.Information("{@Expected} == {@Actual}", expected, actual);
+                } else {
+                    _log.Information("{@Expected} != {@Actual}", expected, actual);
+                }
+
+            }
+
+            Assert.Equal(expectations, results);
+        }
+
     }
 }
