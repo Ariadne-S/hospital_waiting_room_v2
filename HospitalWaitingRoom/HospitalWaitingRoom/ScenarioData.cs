@@ -77,5 +77,15 @@ namespace HospitalWaitingRoom
 
         public string Name { get; private set; }
         public List<Patient> Arrivals { get; private set; }
+
+        public Scenario()
+        {
+        }
+
+        public Scenario(string name, List<Patient> arrivals)
+        {
+            Name = name;
+            Arrivals = arrivals;
+        }
     }
 }

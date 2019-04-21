@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Serilog;
 
 namespace HospitalWaitingRoom
@@ -17,8 +18,6 @@ namespace HospitalWaitingRoom
             try {
                 Log.Information("Starting app");
                 Run(Log.Logger);
-
-                Console.ReadLine();
                 return 0;
             } catch (Exception ex) {
                 Log.Fatal(ex, "Host terminated unexpectedly");
@@ -31,7 +30,22 @@ namespace HospitalWaitingRoom
         private static void Run(ILogger logger)
         {
             Welcome.PrintWelcome();
-            App.RunScenario(logger, Scenario.Scenarios[0]);
+            var senarios = Scenario.Scenarios.ToList();
+            while (true) {
+                var command = Welcome.ScenarioOptions();
+                if (command is Exit) {
+                    return;
+                } else if (command is RunScenario run) {
+                    App.RunScenario(logger, senarios[run.Senario - 1]);
+                } else if (command is BuildScenario Build) {
+                    var result = ScenarioBuilder.BuildScenario(logger);
+                    if (result is ExitApp) {
+                        return;
+                    } else if (result is AddScenario add) {
+                        senarios.Add(add.NewScenario);
+                    }
+                }
+            }
         }
     }
 }

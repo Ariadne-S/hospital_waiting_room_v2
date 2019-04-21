@@ -16,5 +16,6 @@ namespace HospitalWaitingRoom
         public string Id { get; }
         public int Severity { get; }
         public int ArrivedTime { get; }
+
     }
 }
